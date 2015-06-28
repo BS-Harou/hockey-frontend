@@ -1,0 +1,138 @@
+@import 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+column-box()
+	border: 1px solid #ccc
+	background: #f1f1f1
+	padding: 0.5rem
+
+html, body
+	min-height: 100%
+
+html
+	font-size: 100%
+
+body
+	background: url('../src/assets/brickwall.png') repeat
+	
+main
+	min-height: 1000px
+	
+header
+	height: 8rem
+	background: url('../src/assets/noisy_net.png') repeat
+	.title
+		text-align: center
+		color: white
+		text-shadow: 0 0 10px white
+		font-size: 2.5rem
+		line-height: 8rem
+	
+footer
+	padding: 0.5rem 0
+	text-align: center
+	color: #999
+	font-size: 0.5rem
+	
+nav
+	position: absolute
+	bottom: 0
+	right: 0
+	
+	ul
+		list-style: none
+		margin: 0 1rem
+	
+	li
+		background: green
+		border-top-left-radius: 0.3rem
+		border-top-right-radius: 0.3rem
+		line-height: 2rem
+		height: 2rem
+		min-width: 4rem
+		text-align: center
+		font-size: 1.5rem
+		color: white
+		cursor: pointer
+		user-select: none
+		
+	li:hover
+		background: lightgreen
+		color: black
+	
+.preloader
+	display: block
+	margin: 4rem auto
+	
+.inner
+	width: 80rem
+	position: relative
+	
+.info
+	column-box()
+	text-align: center
+	margin: 1rem 0
+	font-weight: bold
+	font-size: 1.1rem
+	
+.add-match
+	column-box()
+	
+.add-match button+button
+	margin-left: 0.3rem
+		
+	
+.center
+	text-align: center
+
+.match
+	column-box()
+	color: #222
+	margin-top: 1rem
+	font-weight: bold
+	text-align: center
+	
+.add-button
+	margin: 0 auto
+	width: 2rem
+	height: 2rem
+	border-radius: 1rem
+	background: rgb(24, 29, 34)
+	color: white
+	font-size: 1.5rem
+	line-height: 2rem
+	text-align: center
+	user-select: none
+	cursor: pointer
+	
+	&:hover
+		box-shadow: 0 0 5px #555
+		
+#custom-modal
+	background: rgba(0, 0, 0, 0.8)
+	position: fixed
+	right: 0
+	bottom: 0
+	left: 0
+	top: 0
+	
+	&:empty
+		display: none
+		
+.add-pair
+	padding: 1rem
+	background: white
+	border-radius: 1rem
+	position: absolute
+	left: 50%
+	top: 50%
+	height: 40rem
+	width: 60rem
+	margin-left: -30rem
+	margin-top: -20rem
+	
+@media only screen and (min-device-pixel-ratio: 1.5)
+	body
+		background-image: url('../src/assets/brickwall_@2X.png')
+		
+	header
+		background-image: url('../src/assets/noisy_net_@2.png')

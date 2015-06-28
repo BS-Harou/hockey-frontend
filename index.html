@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NHL16 Cool Webapp</title>
+	<link href="http://cdn.nhle.com/nhl/images/favicon.ico?v=8.37" rel="shortcut icon" type="image/x-icon" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta name="robots" content="index, follow" />
+	<meta name="generator" content="Sublime Text" />
+	<meta name="description" content="App to store results of NHL games." />
+	<meta name="author" content="Martin Kadlec" />
+
+
+	<!--[if lt IE 9]>
+	  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<header>
+		<div class="container inner">
+			<!--<img src="./src/assets/nhl.svg" width="100" style="opacity: 0.1; position: absolute; left: 50%; margin-left: -50px; top: 10px;">-->
+			<div class="row">
+				<div class="col-xs-12 title">
+					NHL Show Time
+				</div>
+			</div>
+
+			<nav>
+				<ul>
+					<li id="add-pair-button">+</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div class="container inner">
+			<div class="row">
+				<div class="col-xs-12" id="content">
+					<img src="./src/assets/preloader.gif" class="preloader" />
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container inner">
+			<div class="row">
+				<div class="col-xs-12">
+					Copyright 2015 Martin Kadlec
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div id="custom-modal"></div>
+
+	<!--<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+	<link rel="stylesheet" href="./build/main.css">
+	<script src="./build/main.js"></script>
+</body>
+</html>
