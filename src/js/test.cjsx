@@ -5,26 +5,33 @@ module.exports = React.createClass
 
 	getInitialState: ->
 		matchStore: []
+		pairStore: []
 
 	componentDidMount: ->
 		app.matchStore.on 'all', @onModelChange
+		app.pairStore.on 'all', @onModelChange
 
 	componentWillUnmount: ->
 		app.matchStore.off 'all', @onModelChange
+		app.pairStore.off 'all', @onModelChange
 
 	onModelChange: ->
-		@setState matchStore: app.matchStore.toJSON()
+		@setState
+			matchStore: app.matchStore.toJSON()
+			pairStore: app.pairStore.toJSON()
 
 	render: ->
-		matchStore1 = @state.matchStore
-		matchStore2 = @state.matchStore
-		matchStore3 = @state.matchStore
-
-		columnCount = 3
+		columnCount = Math.max 2, @state.pairStore.length
 		columnClass = 'col-xs-' + Math.floor 12 / columnCount
+
+		columns = @state.pairStore.map (pair, i) =>
+			pic1 = pair.team1Name?.toLowerCase()
+			pic2 = pair.team2Name?.toLowerCase()
+			matches = @state.matchStore.filter (match) -> match.pairId is pair._id
+			<MatchColumn key={pair._id} pair={pair} columnClass={columnClass} matchStore={matches} pics={[pic1, pic2]} />
+
+		
 		<div className="row">
-			<MatchColumn key="col-1" columnClass={columnClass} matchStore={matchStore1} pics={['philadelphia', 'boston']} />
-			<MatchColumn key="col-2" columnClass={columnClass} matchStore={matchStore2} pics={['boston', 'montreal']} />
-			<MatchColumn key="col-3" columnClass={columnClass} matchStore={matchStore3} pics={['montreal', 'philadelphia']} />
+			{columns}
 		</div>
 		

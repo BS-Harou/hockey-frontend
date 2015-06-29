@@ -11,43 +11,40 @@ module.exports = React.createClass
 		app.socket.emit 'data',
 			endpoint: '/pairs/insert'
 			value: map
-		@props.hideAddForm()
+		app.hideModal()
 		return
 
 	render: ->
 		<div className="add-pair">
-			<form className="form-horizontal" onSubmit={@onSubmit} method="POST">
+			<div className="heading">Přidat sloupec</div>
+			<form className="form-horizontal center" onSubmit={@onSubmit} method="POST">
+				<div className="form-group">
+					<label htmlFor="team1-name" className="col-xs-5 control-label">Tým 1</label>
+					<div className="col-xs-2"></div>
+					<label htmlFor="team2-name" className="col-xs-5 control-label">Tým 2</label>
+				</div>
 				<div className="form-group">
 					<div className="col-xs-5">
-						<input type="number" className="form-control" id="team1-score" name="team1Score" defaultValue="0" dir="RTL" />
+						<input type="text" className="form-control" id="team1-name" name="team1Name" placeholder="Boston" />
 					</div>
-					<label htmlFor="team1-score" className="col-xs-2 control-label">gólů</label>
+					<label htmlFor="team1-name" className="col-xs-2 control-label">jméno</label>
 					<div className="col-xs-5">
-						<input type="number" className="form-control" id="team2-score" name="team2Score" defaultValue="0" />
+						<input type="text" className="form-control" id="team2-name" name="team2Name" placeholder="Philadelphia" />
 					</div>
 				</div>
 				<div className="form-group">
 					<div className="col-xs-5">
-						<input type="number" className="form-control" id="team1-shots" name="team1Shots" defaultValue="0" dir="RTL" />
+						<input type="text" className="form-control" id="team1-abbr" name="team1Abbr" placeholder="BOS"  />
 					</div>
-					<label htmlFor="team1-shots" className="col-xs-2 control-label">střel</label>
+					<label htmlFor="team1-abbr" className="col-xs-2 control-label">zkratka</label>
 					<div className="col-xs-5">
-						<input type="number" className="form-control" id="team2-shots" name="team2Shots" defaultValue="0" />
-					</div>
-				</div>
-				<div className="form-group">
-					<div className="col-xs-12 center">
-						<select className="form-control" id="win-type" name="winType">
-							<option value="regular">V běžné hrací době</option>
-							<option value="ot">V prodloužení</option>
-							<option value="so">V nájezdech</option>
-						</select>
+						<input type="text" className="form-control" id="team2-abbr" name="team2Abbr" placeholder="PHI" />
 					</div>
 				</div>
 				<div className="form-group">
 					<div className="col-xs-12 center">
 						<button type="submit" className="btn btn-primary">Přidat</button>
-						<button type="button" className="btn btn-default" onClick={@props.hideAddForm}>Zrušit</button>
+						<button type="button" className="btn btn-default" onClick={app.hideModal}>Zrušit</button>
 					</div>
 				</div>
 			</form>

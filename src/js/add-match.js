@@ -8,7 +8,9 @@ module.exports = React.createClass({
   onSubmit: function(ev) {
     var map, nameEls;
     ev.preventDefault();
-    map = {};
+    map = {
+      pairId: this.props.pair._id
+    };
     nameEls = [].slice.call(ev.target.querySelectorAll('[name]'));
     nameEls.forEach(function(el) {
       return map[el.name] = el.value;
@@ -40,7 +42,9 @@ module.exports = React.createClass({
     })), React.createElement("label", {
       "htmlFor": "team1-score",
       "className": "col-xs-2 control-label"
-    }, "g\u00f3l\u016f"), React.createElement("div", {
+    }, React.createElement("span", {
+      "className": "overflow-center"
+    }, "g\u00f3l\u016f")), React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
       "type": "number",
@@ -48,6 +52,28 @@ module.exports = React.createClass({
       "id": "team2-score",
       "name": "team2Score",
       "defaultValue": "0"
+    }))), React.createElement("div", {
+      "className": "form-group"
+    }, React.createElement("div", {
+      "className": "col-xs-5 text-right"
+    }, React.createElement("input", {
+      "type": "radio",
+      "id": "team1-home",
+      "name": "teamHome",
+      "value": "1",
+      "defaultChecked": "checked"
+    })), React.createElement("label", {
+      "htmlFor": "team1-home",
+      "className": "col-xs-2 control-label"
+    }, React.createElement("span", {
+      "className": "overflow-center"
+    }, "doma")), React.createElement("div", {
+      "className": "col-xs-5"
+    }, React.createElement("input", {
+      "type": "radio",
+      "id": "team2-home",
+      "name": "teamHome",
+      "value": "2"
     }))), React.createElement("div", {
       "className": "form-group"
     }, React.createElement("div", {
@@ -62,7 +88,9 @@ module.exports = React.createClass({
     })), React.createElement("label", {
       "htmlFor": "team1-shots",
       "className": "col-xs-2 control-label"
-    }, "st\u0159el"), React.createElement("div", {
+    }, React.createElement("span", {
+      "className": "overflow-center"
+    }, "st\u0159el")), React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
       "type": "number",
@@ -84,7 +112,9 @@ module.exports = React.createClass({
     })), React.createElement("label", {
       "htmlFor": "team1-shots",
       "className": "col-xs-2 control-label"
-    }, "vhazov\u00e1n\u00ed"), React.createElement("div", {
+    }, React.createElement("span", {
+      "className": "overflow-center"
+    }, "vhazov\u00e1n\u00ed")), React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
       "type": "number",

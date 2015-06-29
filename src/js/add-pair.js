@@ -17,74 +17,70 @@ module.exports = React.createClass({
       endpoint: '/pairs/insert',
       value: map
     });
-    this.props.hideAddForm();
+    app.hideModal();
   },
   render: function() {
     return React.createElement("div", {
       "className": "add-pair"
-    }, React.createElement("form", {
-      "className": "form-horizontal",
+    }, React.createElement("div", {
+      "className": "heading"
+    }, "P\u0159idat sloupec"), React.createElement("form", {
+      "className": "form-horizontal center",
       "onSubmit": this.onSubmit,
       "method": "POST"
     }, React.createElement("div", {
       "className": "form-group"
+    }, React.createElement("label", {
+      "htmlFor": "team1-name",
+      "className": "col-xs-5 control-label"
+    }, "T\u00fdm 1"), React.createElement("div", {
+      "className": "col-xs-2"
+    }), React.createElement("label", {
+      "htmlFor": "team2-name",
+      "className": "col-xs-5 control-label"
+    }, "T\u00fdm 2")), React.createElement("div", {
+      "className": "form-group"
     }, React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
-      "type": "number",
+      "type": "text",
       "className": "form-control",
-      "id": "team1-score",
-      "name": "team1Score",
-      "defaultValue": "0",
-      "dir": "RTL"
+      "id": "team1-name",
+      "name": "team1Name",
+      "placeholder": "Boston"
     })), React.createElement("label", {
-      "htmlFor": "team1-score",
+      "htmlFor": "team1-name",
       "className": "col-xs-2 control-label"
-    }, "g\u00f3l\u016f"), React.createElement("div", {
+    }, "jm\u00e9no"), React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
-      "type": "number",
+      "type": "text",
       "className": "form-control",
-      "id": "team2-score",
-      "name": "team2Score",
-      "defaultValue": "0"
+      "id": "team2-name",
+      "name": "team2Name",
+      "placeholder": "Philadelphia"
     }))), React.createElement("div", {
       "className": "form-group"
     }, React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
-      "type": "number",
+      "type": "text",
       "className": "form-control",
-      "id": "team1-shots",
-      "name": "team1Shots",
-      "defaultValue": "0",
-      "dir": "RTL"
+      "id": "team1-abbr",
+      "name": "team1Abbr",
+      "placeholder": "BOS"
     })), React.createElement("label", {
-      "htmlFor": "team1-shots",
+      "htmlFor": "team1-abbr",
       "className": "col-xs-2 control-label"
-    }, "st\u0159el"), React.createElement("div", {
+    }, "zkratka"), React.createElement("div", {
       "className": "col-xs-5"
     }, React.createElement("input", {
-      "type": "number",
+      "type": "text",
       "className": "form-control",
-      "id": "team2-shots",
-      "name": "team2Shots",
-      "defaultValue": "0"
+      "id": "team2-abbr",
+      "name": "team2Abbr",
+      "placeholder": "PHI"
     }))), React.createElement("div", {
-      "className": "form-group"
-    }, React.createElement("div", {
-      "className": "col-xs-12 center"
-    }, React.createElement("select", {
-      "className": "form-control",
-      "id": "win-type",
-      "name": "winType"
-    }, React.createElement("option", {
-      "value": "regular"
-    }, "V b\u011b\u017en\u00e9 hrac\u00ed dob\u011b"), React.createElement("option", {
-      "value": "ot"
-    }, "V prodlou\u017een\u00ed"), React.createElement("option", {
-      "value": "so"
-    }, "V n\u00e1jezdech")))), React.createElement("div", {
       "className": "form-group"
     }, React.createElement("div", {
       "className": "col-xs-12 center"
@@ -94,7 +90,7 @@ module.exports = React.createClass({
     }, "P\u0159idat"), React.createElement("button", {
       "type": "button",
       "className": "btn btn-default",
-      "onClick": this.props.hideAddForm
+      "onClick": app.hideModal
     }, "Zru\u0161it")))));
   }
 });

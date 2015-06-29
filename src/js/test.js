@@ -7,44 +7,47 @@ MatchColumn = require('./match-column');
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      matchStore: []
+      matchStore: [],
+      pairStore: []
     };
   },
   componentDidMount: function() {
-    return app.matchStore.on('all', this.onModelChange);
+    app.matchStore.on('all', this.onModelChange);
+    return app.pairStore.on('all', this.onModelChange);
   },
   componentWillUnmount: function() {
-    return app.matchStore.off('all', this.onModelChange);
+    app.matchStore.off('all', this.onModelChange);
+    return app.pairStore.off('all', this.onModelChange);
   },
   onModelChange: function() {
     return this.setState({
-      matchStore: app.matchStore.toJSON()
+      matchStore: app.matchStore.toJSON(),
+      pairStore: app.pairStore.toJSON()
     });
   },
   render: function() {
-    var columnClass, columnCount, matchStore1, matchStore2, matchStore3;
-    matchStore1 = this.state.matchStore;
-    matchStore2 = this.state.matchStore;
-    matchStore3 = this.state.matchStore;
-    columnCount = 3;
+    var columnClass, columnCount, columns;
+    columnCount = Math.max(2, this.state.pairStore.length);
     columnClass = 'col-xs-' + Math.floor(12 / columnCount);
+    columns = this.state.pairStore.map((function(_this) {
+      return function(pair, i) {
+        var matches, pic1, pic2, ref, ref1;
+        pic1 = (ref = pair.team1Name) != null ? ref.toLowerCase() : void 0;
+        pic2 = (ref1 = pair.team2Name) != null ? ref1.toLowerCase() : void 0;
+        matches = _this.state.matchStore.filter(function(match) {
+          return match.pairId === pair._id;
+        });
+        return React.createElement(MatchColumn, {
+          "key": pair._id,
+          "pair": pair,
+          "columnClass": columnClass,
+          "matchStore": matches,
+          "pics": [pic1, pic2]
+        });
+      };
+    })(this));
     return React.createElement("div", {
       "className": "row"
-    }, React.createElement(MatchColumn, {
-      "key": "col-1",
-      "columnClass": columnClass,
-      "matchStore": matchStore1,
-      "pics": ['philadelphia', 'boston']
-    }), React.createElement(MatchColumn, {
-      "key": "col-2",
-      "columnClass": columnClass,
-      "matchStore": matchStore2,
-      "pics": ['boston', 'montreal']
-    }), React.createElement(MatchColumn, {
-      "key": "col-3",
-      "columnClass": columnClass,
-      "matchStore": matchStore3,
-      "pics": ['montreal', 'philadelphia']
-    }));
+    }, columns);
   }
 });

@@ -6,7 +6,9 @@ window.app = app = new Backbone.Model
 
 Test = require './test'
 MatchStore = require './match-store'
+PairStore = require './pair-store'
 AddPair = require './add-pair'
+app.pairStore = new PairStore
 app.matchStore = new MatchStore
 
 
@@ -21,8 +23,9 @@ socket.on 'connect', ->
 
 socket.on 'data', (msg) ->
 	if msg?.endpoint is '/matches/list'
-		app.matchStore.add JSON.parse msg.value
-
+		app.matchStore.reset JSON.parse msg.value
+	if msg?.endpoint is '/pairs/list'
+		app.pairStore.reset JSON.parse msg.value
 
 #
 # React
@@ -40,3 +43,5 @@ modalPlaceholder = document.getElementById 'custom-modal'
 addPairButton = document.getElementById 'add-pair-button'
 addPairButton.addEventListener 'click', ->
 	React.render React.createElement(AddPair), modalPlaceholder
+app.hideModal = ->
+	React.unmountComponentAtNode modalPlaceholder

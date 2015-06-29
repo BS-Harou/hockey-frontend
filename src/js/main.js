@@ -1,4 +1,4 @@
-var AddPair, Backbone, MatchStore, React, Test, addPairButton, app, io, main, modalPlaceholder, socket;
+var AddPair, Backbone, MatchStore, PairStore, React, Test, addPairButton, app, io, main, modalPlaceholder, socket;
 
 Backbone = require('backbone');
 
@@ -12,7 +12,11 @@ Test = require('./test');
 
 MatchStore = require('./match-store');
 
+PairStore = require('./pair-store');
+
 AddPair = require('./add-pair');
+
+app.pairStore = new PairStore;
 
 app.matchStore = new MatchStore;
 
@@ -25,7 +29,10 @@ socket.on('connect', function() {
 
 socket.on('data', function(msg) {
   if ((msg != null ? msg.endpoint : void 0) === '/matches/list') {
-    return app.matchStore.add(JSON.parse(msg.value));
+    app.matchStore.reset(JSON.parse(msg.value));
+  }
+  if ((msg != null ? msg.endpoint : void 0) === '/pairs/list') {
+    return app.pairStore.reset(JSON.parse(msg.value));
   }
 });
 
@@ -44,3 +51,7 @@ addPairButton = document.getElementById('add-pair-button');
 addPairButton.addEventListener('click', function() {
   return React.render(React.createElement(AddPair), modalPlaceholder);
 });
+
+app.hideModal = function() {
+  return React.unmountComponentAtNode(modalPlaceholder);
+};
