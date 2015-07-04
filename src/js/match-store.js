@@ -11,6 +11,8 @@ MatchModel = (function(superClass) {
     return MatchModel.__super__.constructor.apply(this, arguments);
   }
 
+  MatchModel.prototype.idAttribute = '_id';
+
   return MatchModel;
 
 })(Backbone.Model);
@@ -34,11 +36,12 @@ MatchCollection = (function(superClass) {
     });
   };
 
-  MatchCollection.prototype.comparator = function(a, b) {
-    if (a.date > b.date) {
-      return -1;
-    }
-    return 1;
+  MatchCollection.prototype.comparator = function(a) {
+
+    /*return -1 if parseInt(a.date, 10) > parseInt(b.date, 10)
+    		return 1
+     */
+    return -parseInt(a.get('date'), 10);
   };
 
   return MatchCollection;

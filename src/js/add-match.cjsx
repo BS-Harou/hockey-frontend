@@ -8,7 +8,10 @@ module.exports = React.createClass
 		map =
 			pairId: @props.pair._id
 		nameEls = [].slice.call ev.target.querySelectorAll '[name]'
-		nameEls.forEach (el) -> map[el.name] = el.value
+		nameEls.forEach (el) -> 
+			val = if el.type is 'number' then parseFloat(el.value) else el.value
+			map[el.name] = val
+			
 		app.socket.emit 'data',
 			endpoint: '/matches/insert'
 			value: map

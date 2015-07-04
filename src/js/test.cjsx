@@ -6,19 +6,24 @@ module.exports = React.createClass
 	getInitialState: ->
 		matchStore: []
 		pairStore: []
+		teamStore: []
 
 	componentDidMount: ->
+		@onModelChange()
 		app.matchStore.on 'all', @onModelChange
 		app.pairStore.on 'all', @onModelChange
+		app.teamStore.on 'all', @onModelChange
 
 	componentWillUnmount: ->
 		app.matchStore.off 'all', @onModelChange
 		app.pairStore.off 'all', @onModelChange
+		app.teamStore.off 'all', @onModelChange
 
 	onModelChange: ->
 		@setState
 			matchStore: app.matchStore.toJSON()
 			pairStore: app.pairStore.toJSON()
+			teamStore: app.teamStore.toJSON()
 
 	render: ->
 		columnCount = Math.max 2, @state.pairStore.length

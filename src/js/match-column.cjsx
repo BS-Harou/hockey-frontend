@@ -30,9 +30,22 @@ module.exports = React.createClass
 		document.removeEventListener 'keydown', this.onKeyDown
 	
 	render: ->
-		matches = @props.matchStore.map (match) =>
-			winPic = if match.team1Score > match.team2Score then @props.pair.team1Name.toLowerCase() else @props.pair.team2Name.toLowerCase()
-			<Match key={match._id} winPic={winPic} pair={@props.pair} {...match} />
+		team1Wins = 0
+		team2Wins = 0
+
+		matchStore = @props.matchStore.slice().reverse()
+
+		matches = matchStore.map (match) =>
+			team1Wins++ if parseInt(match.team1Score, 10) > parseInt(match.team2Score, 10)
+			team2Wins++ if parseInt(match.team2Score, 10) > parseInt(match.team1Score, 10)
+			st = null
+			st = background: 'red' if team1Wins > 3 
+			st = background: 'yellow' if team2Wins > 3 
+			team1Wins = team2Wins = 0 if team1Wins > 3 or team2Wins > 3
+
+			<Match key={match._id} st={st} pair={@props.pair} {...match} />
+
+		matches.reverse()
 
 		addButton = <AddButton clickHandler={@showAddForm} />
 		addMatch = <AddMatch pair={@props.pair} hideAddForm={@hideAddForm} />

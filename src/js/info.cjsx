@@ -11,18 +11,23 @@ module.exports = React.createClass
 		return
 
 	render: ->
+		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
+		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
+		team1Img = if team1.icon then <img src={'./src/assets/' + team1.icon} height="40" /> else null
+		team2Img = if team2.icon then <img src={'./src/assets/' + team2.icon} height="40" /> else null
+
 		<div className='info'>
 			<div className="row">
 				<div className="text-left col-xs-5">
-					<img src={'./src/assets/' + @props.pics[0] + '.svg'} height="40" />
-					{@props.pair.team1Abbr}
+					{team1Img} 
+					{team1.abbr}
 				</div>
 				<div className="text-center col-xs-2">
 					vs
 				</div>
 				<div className="text-right  col-xs-5">
-					{@props.pair.team2Abbr}
-					<img src={'./src/assets/' + @props.pics[1] + '.svg'} height="40" />
+					{team2.abbr}
+					{team2Img}
 				</div>	
 			</div>
 			<div className="row">

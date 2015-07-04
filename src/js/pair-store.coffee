@@ -1,6 +1,7 @@
 Backbone = require 'backbone'
 
 class PairModel extends Backbone.Model
+	idAttribute: '_id'
 
 class PairCollection extends Backbone.Collection
 	model: PairModel

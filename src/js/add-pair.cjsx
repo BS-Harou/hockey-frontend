@@ -15,32 +15,31 @@ module.exports = React.createClass
 		return
 
 	render: ->
+
+		teamOptions = app.teamStore.toJSON().map (team) ->
+			<option value={team._id} key={team._id}>{team.name} {team.team}</option>
+
 		<div className="add-pair">
 			<div className="heading">Přidat sloupec</div>
 			<form className="form-horizontal center" onSubmit={@onSubmit} method="POST">
 				<div className="form-group">
-					<label htmlFor="team1-name" className="col-xs-5 control-label">Tým 1</label>
-					<div className="col-xs-2"></div>
-					<label htmlFor="team2-name" className="col-xs-5 control-label">Tým 2</label>
+					<label htmlFor="team1" className="col-xs-6 control-label">Tým 1</label>
+					<label htmlFor="team2" className="col-xs-6 control-label">Tým 2</label>
 				</div>
+
 				<div className="form-group">
-					<div className="col-xs-5">
-						<input type="text" className="form-control" id="team1-name" name="team1Name" placeholder="Boston" />
+					<div className="col-xs-6">
+						<select className="form-control" id="team1" name="team1">
+							{teamOptions}
+						</select>
 					</div>
-					<label htmlFor="team1-name" className="col-xs-2 control-label">jméno</label>
-					<div className="col-xs-5">
-						<input type="text" className="form-control" id="team2-name" name="team2Name" placeholder="Philadelphia" />
-					</div>
-				</div>
-				<div className="form-group">
-					<div className="col-xs-5">
-						<input type="text" className="form-control" id="team1-abbr" name="team1Abbr" placeholder="BOS"  />
-					</div>
-					<label htmlFor="team1-abbr" className="col-xs-2 control-label">zkratka</label>
-					<div className="col-xs-5">
-						<input type="text" className="form-control" id="team2-abbr" name="team2Abbr" placeholder="PHI" />
+					<div className="col-xs-6">
+						<select className="form-control" id="team2" name="team2">
+							{teamOptions}
+						</select>
 					</div>
 				</div>
+
 				<div className="form-group">
 					<div className="col-xs-12 center">
 						<button type="submit" className="btn btn-primary">Přidat</button>

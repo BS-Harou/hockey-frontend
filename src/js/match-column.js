@@ -40,18 +40,41 @@ module.exports = React.createClass({
     return document.removeEventListener('keydown', this.onKeyDown);
   },
   render: function() {
-    var addButton, addComponent, addMatch, matches;
-    matches = this.props.matchStore.map((function(_this) {
+    var addButton, addComponent, addMatch, matchStore, matches, team1Wins, team2Wins;
+    team1Wins = 0;
+    team2Wins = 0;
+    matchStore = this.props.matchStore.slice().reverse();
+    matches = matchStore.map((function(_this) {
       return function(match) {
-        var winPic;
-        winPic = match.team1Score > match.team2Score ? _this.props.pair.team1Name.toLowerCase() : _this.props.pair.team2Name.toLowerCase();
+        var st;
+        if (parseInt(match.team1Score, 10) > parseInt(match.team2Score, 10)) {
+          team1Wins++;
+        }
+        if (parseInt(match.team2Score, 10) > parseInt(match.team1Score, 10)) {
+          team2Wins++;
+        }
+        st = null;
+        if (team1Wins > 3) {
+          st = {
+            background: 'red'
+          };
+        }
+        if (team2Wins > 3) {
+          st = {
+            background: 'yellow'
+          };
+        }
+        if (team1Wins > 3 || team2Wins > 3) {
+          team1Wins = team2Wins = 0;
+        }
         return React.createElement(Match, React.__spread({
           "key": match._id,
-          "winPic": winPic,
+          "st": st,
           "pair": _this.props.pair
         }, match));
       };
     })(this));
+    matches.reverse();
     addButton = React.createElement(AddButton, {
       "clickHandler": this.showAddForm
     });

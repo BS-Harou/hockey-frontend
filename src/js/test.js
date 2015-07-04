@@ -8,21 +8,26 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       matchStore: [],
-      pairStore: []
+      pairStore: [],
+      teamStore: []
     };
   },
   componentDidMount: function() {
+    this.onModelChange();
     app.matchStore.on('all', this.onModelChange);
-    return app.pairStore.on('all', this.onModelChange);
+    app.pairStore.on('all', this.onModelChange);
+    return app.teamStore.on('all', this.onModelChange);
   },
   componentWillUnmount: function() {
     app.matchStore.off('all', this.onModelChange);
-    return app.pairStore.off('all', this.onModelChange);
+    app.pairStore.off('all', this.onModelChange);
+    return app.teamStore.off('all', this.onModelChange);
   },
   onModelChange: function() {
     return this.setState({
       matchStore: app.matchStore.toJSON(),
-      pairStore: app.pairStore.toJSON()
+      pairStore: app.pairStore.toJSON(),
+      teamStore: app.teamStore.toJSON()
     });
   },
   render: function() {

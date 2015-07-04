@@ -20,6 +20,13 @@ module.exports = React.createClass({
     app.hideModal();
   },
   render: function() {
+    var teamOptions;
+    teamOptions = app.teamStore.toJSON().map(function(team) {
+      return React.createElement("option", {
+        "value": team._id,
+        "key": team._id
+      }, team.name, " ", team.team);
+    });
     return React.createElement("div", {
       "className": "add-pair"
     }, React.createElement("div", {
@@ -31,56 +38,26 @@ module.exports = React.createClass({
     }, React.createElement("div", {
       "className": "form-group"
     }, React.createElement("label", {
-      "htmlFor": "team1-name",
-      "className": "col-xs-5 control-label"
-    }, "T\u00fdm 1"), React.createElement("div", {
-      "className": "col-xs-2"
-    }), React.createElement("label", {
-      "htmlFor": "team2-name",
-      "className": "col-xs-5 control-label"
+      "htmlFor": "team1",
+      "className": "col-xs-6 control-label"
+    }, "T\u00fdm 1"), React.createElement("label", {
+      "htmlFor": "team2",
+      "className": "col-xs-6 control-label"
     }, "T\u00fdm 2")), React.createElement("div", {
       "className": "form-group"
     }, React.createElement("div", {
-      "className": "col-xs-5"
-    }, React.createElement("input", {
-      "type": "text",
+      "className": "col-xs-6"
+    }, React.createElement("select", {
       "className": "form-control",
-      "id": "team1-name",
-      "name": "team1Name",
-      "placeholder": "Boston"
-    })), React.createElement("label", {
-      "htmlFor": "team1-name",
-      "className": "col-xs-2 control-label"
-    }, "jm\u00e9no"), React.createElement("div", {
-      "className": "col-xs-5"
-    }, React.createElement("input", {
-      "type": "text",
+      "id": "team1",
+      "name": "team1"
+    }, teamOptions)), React.createElement("div", {
+      "className": "col-xs-6"
+    }, React.createElement("select", {
       "className": "form-control",
-      "id": "team2-name",
-      "name": "team2Name",
-      "placeholder": "Philadelphia"
-    }))), React.createElement("div", {
-      "className": "form-group"
-    }, React.createElement("div", {
-      "className": "col-xs-5"
-    }, React.createElement("input", {
-      "type": "text",
-      "className": "form-control",
-      "id": "team1-abbr",
-      "name": "team1Abbr",
-      "placeholder": "BOS"
-    })), React.createElement("label", {
-      "htmlFor": "team1-abbr",
-      "className": "col-xs-2 control-label"
-    }, "zkratka"), React.createElement("div", {
-      "className": "col-xs-5"
-    }, React.createElement("input", {
-      "type": "text",
-      "className": "form-control",
-      "id": "team2-abbr",
-      "name": "team2Abbr",
-      "placeholder": "PHI"
-    }))), React.createElement("div", {
+      "id": "team2",
+      "name": "team2"
+    }, teamOptions))), React.createElement("div", {
       "className": "form-group"
     }, React.createElement("div", {
       "className": "col-xs-12 center"

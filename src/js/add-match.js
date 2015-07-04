@@ -13,7 +13,9 @@ module.exports = React.createClass({
     };
     nameEls = [].slice.call(ev.target.querySelectorAll('[name]'));
     nameEls.forEach(function(el) {
-      return map[el.name] = el.value;
+      var val;
+      val = el.type === 'number' ? parseFloat(el.value) : el.value;
+      return map[el.name] = val;
     });
     app.socket.emit('data', {
       endpoint: '/matches/insert',
