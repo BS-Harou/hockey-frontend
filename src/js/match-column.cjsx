@@ -55,5 +55,7 @@ module.exports = React.createClass
 		<div className={@props.columnClass + ' match-column'}>
 			<Info pair={@props.pair} pics={@props.pics} />
 			{addComponent}
-			{matches}
+			<div className='serie'>
+				{matches}
+			</div>
 		</div>
