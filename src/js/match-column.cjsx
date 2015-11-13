@@ -35,17 +35,43 @@ module.exports = React.createClass
 
 		matchStore = @props.matchStore.slice().reverse()
 
-		matches = matchStore.map (match) =>
+		series = []
+		seriesIndex = 0
+
+		matchStore.forEach (match, i) =>
+			series[seriesIndex] = [] unless Array.isArray series[seriesIndex]
+
 			team1Wins++ if parseInt(match.team1Score, 10) > parseInt(match.team2Score, 10)
 			team2Wins++ if parseInt(match.team2Score, 10) > parseInt(match.team1Score, 10)
-			st = null
-			st = background: 'red' if team1Wins > 3 
-			st = background: 'yellow' if team2Wins > 3 
-			team1Wins = team2Wins = 0 if team1Wins > 3 or team2Wins > 3
+			serieWon = no
+			if team1Wins > 3 or team2Wins > 3
+				serieWon = yes
 
-			<Match key={match._id} st={st} pair={@props.pair} {...match} />
+			series[seriesIndex].push <Match key={match._id} pair={@props.pair} {...match} />
 
-		matches.reverse()
+			if serieWon
+				series[seriesIndex].winningTeam = if team1Wins > 3 then @props.pair.team1 else @props.pair.team2
+				team1Wins = team2Wins = 0
+				series[seriesIndex].reverse()
+				seriesIndex++
+			else if i is matchStore.length - 1
+				series[seriesIndex].reverse()
+
+		series.reverse()
+
+		matches = series.map (serie, i) ->
+			winningTeam = app.teamStore.get(serie.winningTeam)?.toJSON()
+			head = <img src={'./src/assets/' + winningTeam?.icon} height="48px"  /> if winningTeam
+			head = '?' unless winningTeam
+			<div key={'serie' + i} className='serie row'>
+				<div className="serie-head row">
+					{head}
+				</div>
+				<div className="serie-top row">
+					Vítěz
+				</div>
+				{serie}
+			</div>
 
 		addButton = <AddButton clickHandler={@showAddForm} />
 		addMatch = <AddMatch pair={@props.pair} hideAddForm={@hideAddForm} />
@@ -55,7 +81,5 @@ module.exports = React.createClass
 		<div className={@props.columnClass + ' match-column'}>
 			<Info pair={@props.pair} pics={@props.pics} />
 			{addComponent}
-			<div className='serie'>
-				{matches}
-			</div>
+			{matches}
 		</div>

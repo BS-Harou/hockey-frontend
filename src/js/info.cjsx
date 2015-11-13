@@ -2,6 +2,13 @@ React = require 'react'
 
 module.exports = React.createClass
 
+	getInitialState: ->
+		detail: no
+
+	onClick: ->
+		@setState
+			detail: not @state.detail
+
 	removePair: ->
 		return unless confirm 'Určitě chcete odstranit tento sloupec?'
 		return unless @props.pair?._id
@@ -16,8 +23,14 @@ module.exports = React.createClass
 		team1Img = if team1.icon then <img src={'./src/assets/' + team1.icon} height="40" /> else null
 		team2Img = if team2.icon then <img src={'./src/assets/' + team2.icon} height="40" /> else null
 
-		<div className='info'>
-			<div className="row">
+		if @state.detail
+			detail =
+				<div className="row">
+					<button type="button" className="btn btn-danger btn-xs" onClick={@removePair}>Remove</button>
+				</div>
+
+		<div className='info' onClick={@onClick}>
+			<div className="row unselectable">
 				<div className="text-left col-xs-5">
 					{team1Img} 
 					{team1.abbr}
@@ -30,7 +43,5 @@ module.exports = React.createClass
 					{team2Img}
 				</div>	
 			</div>
-			<div className="row">
-				<button type="button" className="btn btn-danger btn-xs" onClick={@removePair}>x</button>
-			</div>
+			{detail}
 		</div>

@@ -75,6 +75,7 @@ nav
 	margin: 1rem 0
 	font-weight: bold
 	font-size: 1.1rem
+	cursor: pointer
 	
 	.row
 		height: 3rem
@@ -103,6 +104,11 @@ form button+button
 	
 	.row
 		margin: 0
+		
+	.winning-team-icon
+		display: flex
+		align-items: center
+		min-height: 150px
 	
 .add-button
 	margin: 0 auto
@@ -149,6 +155,11 @@ form button+button
 	margin-right: -100%
 	text-align: center
 	
+.image-wrapper
+	width: 3.5rem
+	text-align: center
+	float: left
+	
 .heading
 	color: #959595
 	text-transform: uppercase
@@ -158,11 +169,29 @@ form button+button
 	padding: 0.1rem 0 0.5rem 0
 	
 .serie
+	margin-top: 1rem
 	background: white
 	padding: 1rem
 	border: 1px solid #ccc
-	border-top-left-radius: 1rem 50%
-	border-top-right-radius: 1rem 50%
+	border-top-left-radius: 50% 8rem
+	border-top-right-radius: 50% 8rem
+	
+	&.row
+		margin-left: 0
+		margin-right: 0
+
+.serie-head
+	text-align: center
+	height: 4rem
+	font-size: 2rem
+	
+.serie-top
+	padding-left: 5rem
+	font-weight: bold
+	
+.unselectable
+	-webkit-user-select: none
+	user-select: none
 
 .color-boston
 	background: yellow

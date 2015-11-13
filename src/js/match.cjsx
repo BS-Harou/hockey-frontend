@@ -21,14 +21,19 @@ module.exports = React.createClass
 		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
 		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
 
-		winPic = if parseInt(@props.team1Score, 10) > parseInt(@props.team2Score, 10) then team1.icon else team2.icon
+		winningTeam = if parseInt(@props.team1Score, 10) > parseInt(@props.team2Score, 10) then team1 else team2
 
 		if not @state.detail
-			return <div className="match" onClick={@onClick} style={@props.st}>
+			return <div className="match" onClick={@onClick}>
 					<div className="row">
 						<div className="row col-xs-6">
 							<div className="row text-left">
-								<img src={'./src/assets/' + winPic} height="24px" /> Vítěz
+								<div className="image-wrapper">
+									<img src={'./src/assets/' + winningTeam.icon} height="24px" />
+								</div>
+								<div className="text-wrapper">
+									{winningTeam.name}
+								</div>
 							</div>
 						</div>
 						<div className="row col-xs-6">
@@ -40,21 +45,21 @@ module.exports = React.createClass
 
 		<div className="match" onClick={@onClick} style={@props.st}>
 			<div className="row">
-				<div className="row col-xs-6">
+				<div className="row col-xs-5">
 					<div className="row">
 						Vítěz
 					</div>
-					<div className="row">
-						<img src={'./src/assets/' + winPic} width="100%" />
+					<div className="row winning-team-icon">
+						<img src={'./src/assets/' + winningTeam.icon} width="100%" />
 					</div>
 				</div>
-				<div className="row col-xs-6">
+				<div className="row col-xs-7">
 					<table className="table table-striped">
 						<thead>
 							<tr>
 								<th></th>
-								<th>BOS</th>
-								<th>PHI</th>
+								<th>{team1.abbr}</th>
+								<th>{team2.abbr}</th>
 							</tr>
 						</thead>
 						<tbody>
