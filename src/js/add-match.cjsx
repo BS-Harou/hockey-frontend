@@ -1,6 +1,8 @@
 React = require 'react'
 jQuery = require 'jquery'
 
+css = require '../css/add-match.styl'
+
 module.exports = React.createClass
 
 	onSubmit: (ev) ->
@@ -20,14 +22,14 @@ module.exports = React.createClass
 
 	render: ->
 		# TODO - doma/venku
-		<div className="add-match">
+		<div className={css['add-match']}>
 			<form className="form-horizontal" onSubmit={@onSubmit} method="POST">
 				<div className="form-group">
 					<div className="col-xs-5">
 						<input type="number" className="form-control" id="team1-score" name="team1Score" defaultValue="0" dir="RTL" />
 					</div>
 					<label htmlFor="team1-score" className="col-xs-2 control-label">
-						<span className="overflow-center">gólů</span>
+						<span className={css['overflow-center']}>gólů</span>
 					</label>
 					<div className="col-xs-5">
 						<input type="number" className="form-control" id="team2-score" name="team2Score" defaultValue="0" />
@@ -38,7 +40,7 @@ module.exports = React.createClass
 						<input type="radio" id="team1-home" name="teamHome" value="1" defaultChecked="checked" />
 					</div>
 					<label htmlFor="team1-home" className="col-xs-2 control-label">
-						<span className="overflow-center">doma</span>
+						<span className={css['overflow-center']}>doma</span>
 					</label>
 					<div className="col-xs-5">
 						<input type="radio" id="team2-home" name="teamHome" value="2" />
@@ -49,7 +51,7 @@ module.exports = React.createClass
 						<input type="number" className="form-control" id="team1-shots" name="team1Shots" defaultValue="0" dir="RTL" />
 					</div>
 					<label htmlFor="team1-shots" className="col-xs-2 control-label">
-						<span className="overflow-center">střel</span>
+						<span className={css['overflow-center']}>střel</span>
 					</label>
 					<div className="col-xs-5">
 						<input type="number" className="form-control" id="team2-shots" name="team2Shots" defaultValue="0" />
@@ -60,7 +62,7 @@ module.exports = React.createClass
 						<input type="number" className="form-control" id="team1-faceoffs" name="team1Faceoffs" defaultValue="0" dir="RTL" />
 					</div>
 					<label htmlFor="team1-shots" className="col-xs-2 control-label">
-						<span className="overflow-center">vhazování</span>
+						<span className={css['overflow-center']}>vhazování</span>
 					</label>
 					<div className="col-xs-5">
 						<input type="number" className="form-control" id="team2-faceoffs" name="team2Faceoffs" defaultValue="0" />

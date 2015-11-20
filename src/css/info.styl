@@ -1,0 +1,23 @@
+column-box()
+	border: 1px solid #ccc
+	background: #f1f1f1
+	padding: 0.5rem
+	
+.info
+	column-box()
+	text-align: center
+	margin: 1rem 0
+	font-weight: bold
+	font-size: 1.1rem
+	cursor: pointer
+	
+	:global(.row)
+		height: 3rem
+		line-height: 3rem
+		white-space: nowrap
+		
+	img
+		margin: 0 1rem
+		
+	button + button
+		margin-left: 3px

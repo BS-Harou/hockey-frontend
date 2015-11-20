@@ -1,4 +1,7 @@
 React = require 'react'
+Stats = require './stats'
+
+css = require '../css/info.styl'
 
 module.exports = React.createClass
 
@@ -17,6 +20,10 @@ module.exports = React.createClass
 			value: '_id': @props.pair._id
 		return
 
+	showStats: ->
+		React.render React.createElement(Stats, pair: @props.pair), app.modalPlaceholder
+		return
+
 	render: ->
 		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
 		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
@@ -26,10 +33,11 @@ module.exports = React.createClass
 		if @state.detail
 			detail =
 				<div className="row">
-					<button type="button" className="btn btn-danger btn-xs" onClick={@removePair}>Remove</button>
+					<button type="button" className="btn btn-danger btn-xs" onClick={@removePair}>Odstranit</button>
+					<button type="button" className="btn btn-primary btn-xs" onClick={@showStats}>Statistiky</button>
 				</div>
 
-		<div className='info' onClick={@onClick}>
+		<div className={css.info} onClick={@onClick}>
 			<div className="row unselectable">
 				<div className="text-left col-xs-5">
 					{team1Img} 
@@ -42,6 +50,6 @@ module.exports = React.createClass
 					{team2.abbr}
 					{team2Img}
 				</div>	
-			</div>
+			</div> 
 			{detail}
 		</div>

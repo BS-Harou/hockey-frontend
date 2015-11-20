@@ -1,6 +1,8 @@
 React = require 'react'
 jQuery = require 'jquery'
 
+css = require '../css/add-pair.styl'
+
 module.exports = React.createClass
 
 	onSubmit: (ev) ->
@@ -19,7 +21,7 @@ module.exports = React.createClass
 		teamOptions = app.teamStore.toJSON().map (team) ->
 			<option value={team._id} key={team._id}>{team.name} {team.team}</option>
 
-		<div className="add-pair">
+		<div className={css['add-pair']}>
 			<div className="heading">Přidat sloupec</div>
 			<form className="form-horizontal center" onSubmit={@onSubmit} method="POST">
 				<div className="form-group">

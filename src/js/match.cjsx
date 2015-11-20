@@ -1,5 +1,7 @@
 React = require 'react'
 
+css = require '../css/match.styl'
+
 module.exports = React.createClass
 
 	getInitialState: ->
@@ -24,11 +26,11 @@ module.exports = React.createClass
 		winningTeam = if parseInt(@props.team1Score, 10) > parseInt(@props.team2Score, 10) then team1 else team2
 
 		if not @state.detail
-			return <div className="match" onClick={@onClick}>
+			return <div className={css.match} onClick={@onClick}>
 					<div className="row">
 						<div className="row col-xs-6">
 							<div className="row text-left">
-								<div className="image-wrapper">
+								<div className={css['image-wrapper']}>
 									<img src={'./src/assets/' + winningTeam.icon} height="24px" />
 								</div>
 								<div className="text-wrapper">
@@ -43,13 +45,13 @@ module.exports = React.createClass
 
 				</div>
 
-		<div className="match" onClick={@onClick} style={@props.st}>
+		<div className={css.match} onClick={@onClick} style={@props.st}>
 			<div className="row">
 				<div className="row col-xs-5">
 					<div className="row">
 						Vítěz
 					</div>
-					<div className="row winning-team-icon">
+					<div className={"row " + css['winning-team-icon']}>
 						<img src={'./src/assets/' + winningTeam.icon} width="100%" />
 					</div>
 				</div>

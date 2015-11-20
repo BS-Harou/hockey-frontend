@@ -27,7 +27,8 @@ module.exports = React.createClass
 
 	render: ->
 		columnCount = Math.max 2, @state.pairStore.length
-		columnClass = 'col-xs-' + Math.floor 12 / columnCount
+		xs = Math.max ( Math.floor 12 / columnCount ), 4
+		columnClass = 'col-xs-' + xs
 
 		columns = @state.pairStore.map (pair, i) =>
 			pic1 = pair.team1Name?.toLowerCase()

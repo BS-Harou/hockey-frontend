@@ -4,6 +4,8 @@ AddButton = require './add-button'
 AddMatch = require './add-match'
 Info = require './info'
 
+css = require '../css/match-column.styl'
+
 module.exports = React.createClass
 
 	getInitialState: ->
@@ -63,11 +65,11 @@ module.exports = React.createClass
 			winningTeam = app.teamStore.get(serie.winningTeam)?.toJSON()
 			head = <img src={'./src/assets/' + winningTeam?.icon} height="48px"  /> if winningTeam
 			head = '?' unless winningTeam
-			<div key={'serie' + i} className='serie row'>
-				<div className="serie-head row">
+			<div key={'serie' + i} className={css['serie'] + ' row'}>
+				<div className={css['serie-head'] + ' row'}>
 					{head}
 				</div>
-				<div className="serie-top row">
+				<div className={css['serie-top'] + ' row'}>
 					Vítěz
 				</div>
 				{serie}
