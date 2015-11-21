@@ -1,4 +1,5 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
 Stats = require './stats'
 
 css = require '../css/info.styl'
@@ -21,7 +22,7 @@ module.exports = React.createClass
 		return
 
 	showStats: ->
-		React.render React.createElement(Stats, pair: @props.pair), app.modalPlaceholder
+		ReactDOM.render React.createElement(Stats, pair: @props.pair), app.modalPlaceholder
 		return
 
 	render: ->

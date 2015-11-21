@@ -45,13 +45,13 @@ module.exports = React.createClass
 
 				</div>
 
-		<div className={css.match} onClick={@onClick} style={@props.st}>
+		<div className={css.match + ' unselectable'} onClick={@onClick} style={@props.st}>
 			<div className="row">
 				<div className="row col-xs-5">
-					<div className="row">
+					<div className="row unselectable">
 						Vítěz
 					</div>
-					<div className={"row " + css['winning-team-icon']}>
+					<div className={"row unselectable " + css['winning-team-icon']}>
 						<img src={'./src/assets/' + winningTeam.icon} width="100%" />
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 Backbone = require 'backbone'
 React = require 'react'
+ReactDOM = require 'react-dom'
 io = require 'socket.io-client'
 Highcharts = require 'highcharts-browserify'
 
@@ -53,7 +54,7 @@ up = ->
 	if upCounter is 3
 		main = document.querySelector '#content'
 		throw new Error 'No main element' unless main
-		React.render React.createElement(Columns), main
+		ReactDOM.render React.createElement(Columns), main
 
 
 
@@ -63,7 +64,7 @@ up = ->
 app.modalPlaceholder = modalPlaceholder = document.getElementById 'custom-modal'
 addPairButton = document.getElementById 'add-pair-button'
 addPairButton.addEventListener 'click', ->
-	React.render React.createElement(AddPair), modalPlaceholder
+	ReactDOM.render React.createElement(AddPair), modalPlaceholder
 	return
 
 app.hideModal = ->

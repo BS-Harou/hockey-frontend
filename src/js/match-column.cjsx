@@ -66,11 +66,18 @@ module.exports = React.createClass
 			head = <img src={'./src/assets/' + winningTeam?.icon} height="48px"  /> if winningTeam
 			head = '?' unless winningTeam
 			<div key={'serie' + i} className={css['serie'] + ' row'}>
-				<div className={css['serie-head'] + ' row'}>
+				<div className={css['serie-head'] + ' unselectable row'}>
 					{head}
 				</div>
 				<div className={css['serie-top'] + ' row'}>
-					Vítěz
+					<table className={css['top-table']}>
+						<tbody>
+							<tr>
+								<td className="unselectable">Vítěz</td>
+								<td className="unselectable">Skóre</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				{serie}
 			</div>

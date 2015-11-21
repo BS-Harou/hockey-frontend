@@ -5,6 +5,19 @@ css = require '../css/add-match.styl'
 
 module.exports = React.createClass
 
+	validate: (map) ->
+		if map['team1Score'] + map['team2Score'] <= 0
+			return 'Musel padnout alespon jeden gol'
+
+		if map['team1Score'] is map['team2Score']
+			return 'Hra nemuze skoncit remizou'
+
+		if map['team1Shots'] < map['team1Score'] or map['team2Shots'] < map['team2Score']
+			return 'Tym nemuze mit vice golu nez strel'
+
+		if map['team1Faceoffs'] + map['team2Faceoffs'] <= 0
+			return 'Ve hre muselo byt alespon jedno vhazovani'
+
 	onSubmit: (ev) ->
 		ev.preventDefault()
 		map =
@@ -13,6 +26,10 @@ module.exports = React.createClass
 		nameEls.forEach (el) -> 
 			val = if el.type is 'number' then parseFloat(el.value) else el.value
 			map[el.name] = val
+
+		if error = @validate map
+			alert 'Chyba: ' + error
+			return
 			
 		app.socket.emit 'data',
 			endpoint: '/matches/insert'
