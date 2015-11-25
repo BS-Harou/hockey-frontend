@@ -68,18 +68,29 @@ module.exports = React.createClass
 		team1Goals = 0
 		team2Shots = 0
 		team2Goals = 0
+		team1Wins = 0
+		team2Wins = 0
 		matches.forEach (match) ->
 			team1Shots += parseInt match.get 'team1Shots'
 			team1Goals += parseInt match.get 'team1Score'
 			team2Shots += parseInt match.get 'team2Shots'
 			team2Goals += parseInt match.get 'team2Score'
+			if parseInt(match.get 'team1Score') >=  parseInt(match.get 'team2Score')
+				team1Wins++
+			else
+				team2Wins++
+			return
 
-		team1Shots: team1Shots
-		team2Shots: team2Shots
-		team1Goals: team1Goals
-		team2Goals: team2Goals
-		team1SP: Math.round(team1Goals / team1Shots * 1000) / 10
-		team2SP: Math.round(team2Goals / team2Shots * 1000) / 10
+		{
+			team1Shots
+			team2Shots
+			team1Goals
+			team2Goals
+			team1SP: Math.round(team1Goals / team1Shots * 1000) / 10
+			team2SP: Math.round(team2Goals / team2Shots * 1000) / 10
+			team1Wins
+			team2Wins
+		}
 
 	render: ->
 
@@ -104,6 +115,11 @@ module.exports = React.createClass
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>Výhry</td>
+						<td>{stats.team1Wins}</td>
+						<td>{stats.team2Wins}</td>
+					</tr>
 					<tr>
 						<td>Góly</td>
 						<td>{stats.team1Goals}</td>

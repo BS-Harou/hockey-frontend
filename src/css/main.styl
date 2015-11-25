@@ -4,6 +4,7 @@ column-box()
 	padding: 0.5rem
 
 :global
+	/*
 	html, body
 		min-height: 100%
 
@@ -67,12 +68,20 @@ column-box()
 	.inner
 		min-width: 80rem
 		position: relative
-	
-	form button+button
-		margin-left: 0.3rem
 		
 	.center
 		text-align: center
+		
+	@media only screen and (min-device-pixel-ratio: 1.5)
+		body
+			background-image: url('../assets/brickwall_@2X.png')
+			
+		header
+			background-image: url('../assets/noisy_net_@2X.png')
+	*/
+		
+	form button+button
+		margin-left: 0.3rem
 		
 	#custom-modal
 		display: flex
@@ -103,10 +112,3 @@ column-box()
 		-webkit-user-select: none
 		user-select: none
 		cursor: default
-		
-	@media only screen and (min-device-pixel-ratio: 1.5)
-		body
-			background-image: url('../assets/brickwall_@2X.png')
-			
-		header
-			background-image: url('../assets/noisy_net_@2X.png')

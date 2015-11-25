@@ -1,18 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<title>NHL16 Cool Webapp</title>
 	<link href="http://cdn.nhle.com/nhl/images/favicon.ico?v=8.37" rel="shortcut icon" type="image/x-icon" />
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<meta name="robots" content="index, follow" />
 	<meta name="generator" content="Sublime Text" />
 	<meta name="description" content="App to store results of NHL games." />
 	<meta name="author" content="Martin Kadlec" />
 
-	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<style>
+		html,
+		body {
+		  min-height: 100%;
+		}
+		html {
+		  font-size: 100%;
+		}
+		body {
+		  background: url("./src/assets/brickwall.png") repeat;
+		}
+		main {
+		  min-height: 1000px;
+		}
+		header {
+		  height: 8rem;
+		  background: url("./src/assets/noisy_net.png") repeat;
+		}
+		header .title {
+		  text-align: center;
+		  color: #fff;
+		  text-shadow: 0 0 10px #fff;
+		  font-size: 2.5rem;
+		  line-height: 8rem;
+		}
+		footer {
+		  padding: 0.5rem 0;
+		  text-align: center;
+		  color: #999;
+		  font-size: 0.5rem;
+		}
+		nav {
+		  position: absolute;
+		  bottom: -2.5rem;
+		  right: -3rem;
+		  text-align: center;
+		}
+		nav ul {
+		  list-style: none;
+		  margin: 0;
+		  padding: 0;
+		}
+		nav li {
+		  opacity: 0.5;
+		  border-bottom-left-radius: 0.5rem;
+		  border-bottom-right-radius: 0.5rem;
+		  background: #ccc;
+		  line-height: 2.5rem;
+		  height: 2.5rem;
+		  min-width: 2.5rem;
+		  text-align: center;
+		  font-size: 1.2rem;
+		  color: #000;
+		  cursor: pointer;
+		  user-select: none;
+		}
+		nav li:hover {
+		  opacity: 1;
+		}
+		.preloader {
+		  display: block;
+		  margin: 4rem auto;
+		}
+		.inner {
+		  min-width: 80rem;
+		  position: relative;
+		}
+		.center {
+		  text-align: center;
+		}
+		@media only screen and (min-device-pixel-ratio: 1.5) {
+		  body {
+		    background-image: url("./src/assets/brickwall_@2X.png");
+		  }
+		  header {
+		    background-image: url("./src/assets/noisy_net_@2X.png");
+		  }
+		}
+	</style>
 
 
 	<!--[if lt IE 9]>
@@ -24,7 +103,7 @@
 		<div class="container inner">
 			<!--<img src="./src/assets/nhl.svg" width="100" style="opacity: 0.1; position: absolute; left: 50%; margin-left: -50px; top: 10px;">-->
 			<div class="row">
-				<div class="col-xs-12 title">
+				<div class="col-xs-12 title unselectable">
 					NHL Show Time
 				</div>
 			</div>
