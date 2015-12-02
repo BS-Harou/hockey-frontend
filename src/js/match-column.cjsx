@@ -3,6 +3,7 @@ Match = require './match'
 AddButton = require './add-button'
 AddMatch = require './add-match'
 Info = require './info'
+_ = require 'underscore'
 
 css = require '../css/match-column.styl'
 
@@ -30,17 +31,25 @@ module.exports = React.createClass
 
 	componentWillUnmount: ->
 		document.removeEventListener 'keydown', this.onKeyDown
-	
+
+	getTeam: (id) ->
+		for team in @props.teams.items
+			return team if team['_id'] is id
+		return null
+
+	getSortedMatches: ->
+		_.sortBy @props.matches.slice(), (match) -> -match.date
+
 	render: ->
 		team1Wins = 0
 		team2Wins = 0
 
-		matchStore = @props.matchStore.slice().reverse()
+		matches = @getSortedMatches().reverse()
 
 		series = []
 		seriesIndex = 0
 
-		matchStore.forEach (match, i) =>
+		matches.forEach (match, i) =>
 			series[seriesIndex] = [] unless Array.isArray series[seriesIndex]
 
 			team1Wins++ if parseInt(match.team1Score, 10) > parseInt(match.team2Score, 10)
@@ -49,20 +58,20 @@ module.exports = React.createClass
 			if team1Wins > 3 or team2Wins > 3
 				serieWon = yes
 
-			series[seriesIndex].push <Match key={match._id} pair={@props.pair} {...match} />
+			series[seriesIndex].push <Match key={match._id} pair={@props.pair} teams={@props.teams} {...match} />
 
 			if serieWon
 				series[seriesIndex].winningTeam = if team1Wins > 3 then @props.pair.team1 else @props.pair.team2
 				team1Wins = team2Wins = 0
 				series[seriesIndex].reverse()
 				seriesIndex++
-			else if i is matchStore.length - 1
+			else if i is matches.length - 1
 				series[seriesIndex].reverse()
 
 		series.reverse()
 
-		matches = series.map (serie, i) ->
-			winningTeam = app.teamStore.get(serie.winningTeam)?.toJSON()
+		matches = series.map (serie, i) =>
+			winningTeam = @getTeam serie.winningTeam
 			head = <img src={'./src/assets/' + winningTeam?.icon} height="48px"  /> if winningTeam
 			head = '?' unless winningTeam
 			<div key={'serie' + i} className={css['serie'] + ' row'}>
@@ -88,7 +97,7 @@ module.exports = React.createClass
 		addComponent = if @state.showAddForm then addMatch else addButton
 
 		<div className={@props.columnClass + ' match-column'}>
-			<Info pair={@props.pair} pics={@props.pics} />
+			<Info pair={@props.pair} teams={@props.teams} matches={@props.matches} pics={@props.pics} />
 			{addComponent}
 			{matches}
 		</div>

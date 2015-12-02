@@ -22,12 +22,21 @@ module.exports = React.createClass
 		return
 
 	showStats: ->
-		ReactDOM.render React.createElement(Stats, pair: @props.pair), app.modalPlaceholder
+		ReactDOM.render React.createElement(Stats, 
+			pair: @props.pair
+			teams: @props.teams
+			matches: @props.matches
+		), app.modalPlaceholder
 		return
 
+	getTeam: (id) ->
+		for team in @props.teams.items
+			return team if team['_id'] is id
+		return null
+
 	render: ->
-		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
-		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
+		team1 = @getTeam(@props.pair.team1) or {}
+		team2 = @getTeam(@props.pair.team2) or {}
 		team1Img = if team1.icon then <img src={'./src/assets/' + team1.icon} height="40" /> else null
 		team2Img = if team2.icon then <img src={'./src/assets/' + team2.icon} height="40" /> else null
 

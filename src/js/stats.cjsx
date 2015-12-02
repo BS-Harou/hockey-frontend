@@ -6,24 +6,24 @@ module.exports = React.createClass
 
 	getChart: (chartEl) ->
 
-		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
-		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
+		team1 = @getTeam(@props.pair.team1) or {}
+		team2 = @getTeam(@props.pair.team2) or {}
 		selectedPairId = @props.pair._id
 
-		matches = app.matchStore.filter((match) -> match.get('pairId') is selectedPairId).reverse()
+		matches = @props.matches
 
 		days = matches.map (match) ->
-			date = new Date match.get 'date'
+			date = new Date match.date
 			"#{date.getDate()}.#{date.getMonth() + 1}."
 
 		sum = 0
 		team1Goals = matches.map (match, i) ->
-			sum += Number(match.get('team1Score')) or 0
+			sum += Number(match.team1Score) or 0
 			Math.round(sum / (i + 1) * 10) / 10
 
 		sum = 0
 		team2Goals = matches.map (match, i) ->
-			sum += Number(match.get('team2Score')) or 0
+			sum += Number(match.team2Score) or 0
 			Math.round(sum / (i + 1) * 10) / 10
 
 		new Highcharts.Chart
@@ -62,7 +62,7 @@ module.exports = React.createClass
 
 	getStats: ->
 		selectedPairId = @props.pair._id
-		matches = app.matchStore.filter((match) -> match.get('pairId') is selectedPairId).reverse()
+		matches = @props.matches
 
 		team1Shots = 0
 		team1Goals = 0
@@ -71,11 +71,11 @@ module.exports = React.createClass
 		team1Wins = 0
 		team2Wins = 0
 		matches.forEach (match) ->
-			team1Shots += parseInt match.get 'team1Shots'
-			team1Goals += parseInt match.get 'team1Score'
-			team2Shots += parseInt match.get 'team2Shots'
-			team2Goals += parseInt match.get 'team2Score'
-			if parseInt(match.get 'team1Score') >=  parseInt(match.get 'team2Score')
+			team1Shots += parseInt match.team1Shots
+			team1Goals += parseInt match.team1Score
+			team2Shots += parseInt match.team2Shots
+			team2Goals += parseInt match.team2Score
+			if parseInt(match.team1Score) >=  parseInt(match.team2Score)
 				team1Wins++
 			else
 				team2Wins++
@@ -92,10 +92,15 @@ module.exports = React.createClass
 			team2Wins
 		}
 
+	getTeam: (id) ->
+		for team in @props.teams.items
+			return team if team['_id'] is id
+		return null
+
 	render: ->
 
-		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
-		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
+		team1 = @getTeam(@props.pair.team1) or {}
+		team2 = @getTeam(@props.pair.team2) or {}
 
 		setTimeout =>
 			@getChart()

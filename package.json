@@ -18,6 +18,8 @@
     "react": "~0.14.3",
     "react-dom": "^0.14.3",
     "react-hot-loader": "~1.3.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
     "socket.io-client": "~1.3.5",
     "style-loader": "~0.13.0",
     "stylus-loader": "~1.4.2",
@@ -25,7 +27,9 @@
     "webpack": "~1.12.6",
     "webpack-dev-server": "~1.12.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "redux-devtools": "^2.1.5"
+  },
   "scripts": {},
   "author": "Martin Kadlec",
   "license": "ISC"

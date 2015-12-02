@@ -18,7 +18,7 @@ module.exports = React.createClass
 
 	render: ->
 
-		teamOptions = app.teamStore.toJSON().map (team) ->
+		teamOptions = @props.teams.items?.map (team) ->
 			<option value={team._id} key={team._id}>{team.name} {team.team}</option>
 
 		<div className={css['add-pair']}>

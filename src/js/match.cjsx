@@ -19,9 +19,14 @@ module.exports = React.createClass
 			value: '_id': @props._id
 		return
 
+	getTeam: (id) ->
+		for team in @props.teams.items
+			return team if team['_id'] is id
+		return null
+
 	render: ->
-		team1 = app.teamStore.get(@props.pair.team1)?.toJSON() or {}
-		team2 = app.teamStore.get(@props.pair.team2)?.toJSON() or {}
+		team1 = @getTeam @props.pair.team1 or {}
+		team2 = @getTeam @props.pair.team2 or {}
 
 		winningTeam = if parseInt(@props.team1Score, 10) > parseInt(@props.team2Score, 10) then team1 else team2
 
