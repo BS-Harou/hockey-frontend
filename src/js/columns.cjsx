@@ -5,6 +5,8 @@ PureRenderMixin = require 'react-addons-pure-render-mixin'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'Columns'
+
 	render: ->
 		columnCount = Math.max 2, @props.pairs.items.length
 		xs = Math.max ( Math.floor 12 / columnCount ), 4

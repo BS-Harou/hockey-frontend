@@ -6,6 +6,8 @@ css = require '../css/stats.styl'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'Stats'
+
 	getChart: (chartEl) ->
 
 		team1 = @getTeam(@props.pair.team1) or {}

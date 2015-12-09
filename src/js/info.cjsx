@@ -8,6 +8,8 @@ css = require '../css/info.styl'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'Info'
+
 	getInitialState: ->
 		detail: no
 

@@ -11,6 +11,8 @@ PureRenderMixin = require 'react-addons-pure-render-mixin'
 App = React.createClass
   mixins: [PureRenderMixin]
 
+  displayName: 'App'
+
   render: ->
     return (
       <div>

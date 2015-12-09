@@ -7,6 +7,8 @@ css = require '../css/add-pair.styl'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'AddPair'
+
 	onSubmit: (ev) ->
 		ev.preventDefault()
 		map = {}

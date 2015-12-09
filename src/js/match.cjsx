@@ -6,6 +6,8 @@ css = require '../css/match.styl'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'match'
+
 	getInitialState: ->
 		detail: no
 

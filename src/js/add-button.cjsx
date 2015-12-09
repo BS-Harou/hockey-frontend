@@ -5,7 +5,9 @@ css = require '../css/add-button.styl'
 
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
-	
+
+	displayName: 'AddButton'
+
 	render: ->
 		<div className={css['add-button']} onClick={@props.clickHandler} >
 			+

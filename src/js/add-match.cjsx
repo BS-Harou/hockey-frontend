@@ -7,6 +7,8 @@ css = require '../css/add-match.styl'
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
+	displayName: 'AddMatch'
+
 	validate: (map) ->
 		if map['team1Score'] + map['team2Score'] <= 0
 			return 'Musel padnout alespon jeden gol'
