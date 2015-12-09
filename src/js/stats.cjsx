@@ -1,8 +1,10 @@
 React = require 'react'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/stats.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	getChart: (chartEl) ->
 

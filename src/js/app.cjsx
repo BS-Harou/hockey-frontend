@@ -1,5 +1,4 @@
 React = require 'react'
-Component = React.Component
 PropTypes = React.PropTypes
 Redux = require 'redux'
 connect = require('react-redux').connect
@@ -7,8 +6,11 @@ Columns = require './columns'
 pairActions = require './actions/pairs'
 teamActions = require './actions/teams'
 matchActions = require './actions/matches'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
-class App extends Component
+App = React.createClass
+  mixins: [PureRenderMixin]
+
   render: ->
     return (
       <div>

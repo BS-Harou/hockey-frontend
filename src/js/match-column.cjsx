@@ -4,10 +4,12 @@ AddButton = require './add-button'
 AddMatch = require './add-match'
 Info = require './info'
 _ = require 'underscore'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/match-column.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	getInitialState: ->
 		showAddForm: no

@@ -1,8 +1,10 @@
 React = require 'react'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/match.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	getInitialState: ->
 		detail: no

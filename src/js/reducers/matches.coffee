@@ -1,4 +1,5 @@
 actions = require '../actions/matches'
+update = require 'react-addons-update'
 
 initialState =
 	isFetching: no
@@ -9,23 +10,20 @@ matches = (state = initialState, action) ->
 
 	switch action.type
 		when actions.INVALIDATE_MATCHES
-			Object.assign({}, state, 
+			update state, $merge:
 				didInvalidate: yes
-			)
 
 		when actions.REQUEST_MATCHES
-			Object.assign({}, state,
+			update state, $merge:
 				isFetching: yes
 				didInvalidate: no
-			)
 
 		when actions.RECEIVE_MATCHES
-			Object.assign({}, state,
+			update state, $merge:
 				isFetching: no
 				didInvalidate: no
 				items: action.matches
 				lastUpdated: action.receivedAt
-			)
 
 		else state
 

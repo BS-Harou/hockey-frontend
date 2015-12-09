@@ -1,10 +1,12 @@
 React = require 'react'
 ReactDOM = require 'react-dom'
 Stats = require './stats'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/info.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	getInitialState: ->
 		detail: no

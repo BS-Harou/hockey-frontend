@@ -1,9 +1,11 @@
 React = require 'react'
 jQuery = require 'jquery'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/add-pair.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	onSubmit: (ev) ->
 		ev.preventDefault()

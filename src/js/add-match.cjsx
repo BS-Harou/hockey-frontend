@@ -1,9 +1,11 @@
 React = require 'react'
 jQuery = require 'jquery'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 css = require '../css/add-match.styl'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	validate: (map) ->
 		if map['team1Score'] + map['team2Score'] <= 0

@@ -1,7 +1,9 @@
 React = require 'react'
 MatchColumn = require './match-column'
+PureRenderMixin = require 'react-addons-pure-render-mixin'
 
 module.exports = React.createClass
+	mixins: [PureRenderMixin]
 
 	render: ->
 		columnCount = Math.max 2, @props.pairs.items.length
