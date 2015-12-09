@@ -1,16 +1,22 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
 MatchColumn = require './match-column'
 PureRenderMixin = require 'react-addons-pure-render-mixin'
+AddPair = require './add-pair'
+
+css = require '../css/columns.styl'
 
 module.exports = React.createClass
 	mixins: [PureRenderMixin]
 
 	displayName: 'Columns'
 
+	openAddPair: ->
+		ReactDOM.render React.createElement(AddPair, app.store.getState()), app.modalPlaceholder
+		return
+
 	render: ->
-		columnCount = Math.max 2, @props.pairs.items.length
-		xs = Math.max ( Math.floor 12 / columnCount ), 4
-		columnClass = 'col-xs-' + xs
+		columnClass = css['column']
 		columns = @props.pairs.items.map (pair, i) =>
 			pic1 = pair.team1Name?.toLowerCase()
 			pic2 = pair.team2Name?.toLowerCase()
@@ -24,8 +30,10 @@ module.exports = React.createClass
 				pics={[pic1, pic2]}
 			/>
 
-		
-		<div className="row">
+		<div className={css['columns']}>
 			{columns}
+
+			<div className={css['add-column']} onClick={@openAddPair}>+</div>
 		</div>
-		
+
+

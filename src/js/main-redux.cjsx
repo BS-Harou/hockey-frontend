@@ -8,8 +8,6 @@ window.app = app = {}
 
 require '../css/main.styl'
 
-AddPair = require './add-pair'
-
 #
 # Redux stuff
 #
@@ -79,13 +77,9 @@ up = ->
 
 
 #
-# Nav
+# Modals
 #
 app.modalPlaceholder = modalPlaceholder = document.getElementById 'custom-modal'
-addPairButton = document.getElementById 'add-pair-button'
-addPairButton.addEventListener 'click', ->
-	ReactDOM.render React.createElement(AddPair, store.getState()), modalPlaceholder
-	return
 
 app.hideModal = ->
 	ReactDOM.unmountComponentAtNode modalPlaceholder

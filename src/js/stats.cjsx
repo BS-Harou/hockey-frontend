@@ -64,6 +64,10 @@ module.exports = React.createClass
 				data: team2Goals
 			]
 
+	getPerc: (num, total) ->
+		return 0 unless total
+		Math.round(num / total * 1000) / 10
+
 	getStats: ->
 		selectedPairId = @props.pair._id
 		matches = @props.matches
@@ -90,8 +94,8 @@ module.exports = React.createClass
 			team2Shots
 			team1Goals
 			team2Goals
-			team1SP: Math.round(team1Goals / team1Shots * 1000) / 10
-			team2SP: Math.round(team2Goals / team2Shots * 1000) / 10
+			team1SP: @getPerc team1Goals, team1Shots
+			team2SP: @getPerc team2Goals, team2Shots
 			team1Wins
 			team2Wins
 		}

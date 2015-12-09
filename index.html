@@ -23,11 +23,14 @@
 		}
 		body {
 		  background: url("./src/assets/brickwall.png") repeat;
+		  float: left;
+		  min-width: 100%;
 		}
 		main {
 		  min-height: 1000px;
 		}
 		header {
+		  width: 100%;
 		  height: 8rem;
 		  background: url("./src/assets/noisy_net.png") repeat;
 		}
@@ -43,34 +46,6 @@
 		  text-align: center;
 		  color: #999;
 		  font-size: 0.5rem;
-		}
-		nav {
-		  position: absolute;
-		  bottom: -2.5rem;
-		  right: -3rem;
-		  text-align: center;
-		}
-		nav ul {
-		  list-style: none;
-		  margin: 0;
-		  padding: 0;
-		}
-		nav li {
-		  opacity: 0.5;
-		  border-bottom-left-radius: 0.5rem;
-		  border-bottom-right-radius: 0.5rem;
-		  background: #ccc;
-		  line-height: 2.5rem;
-		  height: 2.5rem;
-		  min-width: 2.5rem;
-		  text-align: center;
-		  font-size: 1.2rem;
-		  color: #000;
-		  cursor: pointer;
-		  user-select: none;
-		}
-		nav li:hover {
-		  opacity: 1;
 		}
 		.preloader {
 		  display: block;
@@ -107,21 +82,13 @@
 					NHL Show Time
 				</div>
 			</div>
-
-			<nav>
-				<ul>
-					<li id="add-pair-button">+</li>
-				</ul>
-			</nav>
 		</div>
 	</header>
 
 	<main>
-		<div class="container inner">
-			<div class="row">
-				<div class="col-xs-12" id="content">
-					<img src="./src/assets/preloader.gif" class="preloader" />
-				</div>
+		<div id="content">
+			<div class="container inner">
+				<img src="./src/assets/preloader.gif" class="preloader" />
 			</div>
 		</div>
 	</main>
